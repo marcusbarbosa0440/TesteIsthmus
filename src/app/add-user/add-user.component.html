@@ -1,0 +1,137 @@
+<div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"></span></button>
+                <h3 class="modal-tittle" id="lineModalLabel">Adicionar Cliente</h3>
+            </div>
+            <form [formGroup]="formUser" class="form-horizontal" (ngSubmit)= "guardarUsers()">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1">
+
+                            <!--  Conteúdo vai aqui  -->
+                            <div class="form-group" [ngClass]="{ 'has-error': submitted && nomes.errors }">
+                                <label for="inputNomes"> Nome </label>
+                                <input type="text" id="inputNomes" name="inputNomes" class="form-control"
+                                    placeholder="Insira o nome do Cliente" formControlName="nomes" />
+                                <div *ngIf="submitted && nomes.errors" class="invalid-feedback">
+                                    <div *ngIf="nomes.errors.required"> Por favor insira o nome do Cliente </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group" [ngClass]="{ 'has-error': submitted && cpf.errors }">
+                                <label for="inputCpf"> CPF </label>
+                                <input type="text" id="inputCpf" name="inputCpf" class="form-control"
+                                    placeholder="Insira o CPF do Cliente" formControlName="cpf" />
+                                <div *ngIf="submitted && cpf.errors" class="invalid-feedback">
+                                    <div *ngIf="cpf.errors.required"> Por favor insira CPF do Cliente </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group" [ngClass]="{ 'has-error': submitted && nascimento.errors }">
+                                <label for="inputNascimento"> Data de nascimento </label>
+                                <input type="text" id="inputNascimento" name="inputNascimento" class="form-control"
+                                    placeholder="Insira a Data de nascimento do Cliente" formControlName="nascimento" />
+                                <div *ngIf="submitted && nascimento.errors" class="invalid-feedback">
+                                    <div *ngIf="nascimento.errors.required"> Por favor insira a data de nascimento do
+                                        Cliente
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group" [ngClass]="{ 'has-error': submitted && telefone.errors }">
+                                <label for="inputTelefone"> Telefone </label>
+                                <input type="text" id="inputTelefone" name="inputTelefone" class="form-control"
+                                    placeholder="Insira o telefone do Cliente" formControlName="telefone" />
+                                <div *ngIf="submitted && telefone.errors" class="invalid-feedback">
+                                    <div *ngIf="telefone.errors.required"> Por favor insira o telefone do Cliente </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group" [ngClass]="{ 'has-error': submitted && email.errors }">
+                                <label for="inputEmail"> Email </label>
+                                <input type="text" id="inputEmail" name="inputEmail" class="form-control"
+                                    placeholder="Insira o Email do Cliente" formControlName="email" />
+                                <div *ngIf="submitted && email.errors" class="invalid-feedback">
+                                    <div *ngIf="email.errors.required"> Por favor insira o Email do Cliente </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group" [ngClass]="{ 'has-error': submitted && cep.errors }">
+                                <label for="inputCep"> CEP </label>
+                                <input type="text" (keyup.enter)="buscaCep(cep.value)" id="inputCep" name="inputCep" class="form-control"
+                                    placeholder="Insira o CEP do Cliente" formControlName="cep" />
+                                <div *ngIf="submitted && cep.errors" class="invalid-feedback">
+                                    <div *ngIf="cep.errors.required"> Por favor insira o CEP do Cliente </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group" [ngClass]="{ 'has-error': submitted && logradouro.errors }">
+                                <label for="inputLogradouro"> Logradouro </label>
+                                <input type="text" id="inputLogradouro" name="inputLogradouro" class="form-control"
+                                    placeholder="Insira o logradouro do Endereço" formControlName="logradouro" />
+                                <div *ngIf="submitted && logradouro.errors" class="invalid-feedback">
+                                    <div *ngIf="logradouro.errors.required"> Por favor insira o logradouro do Endereço
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group" [ngClass]="{ 'has-error': submitted && complemento.errors }">
+                                <label for="inputComplemento"> Complemento </label>
+                                <input type="text" id="inputComplemento" name="inputComplemento" class="form-control"
+                                    placeholder="Insira o complemento do Endereço" formControlName="complemento" />
+                                <div *ngIf="submitted && complemento.errors" class="invalid-feedback">
+                                    <div *ngIf="complemento.errors.required"> Por favor insira o complemento do Endereço
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group" [ngClass]="{ 'has-error': submitted && bairro.errors }">
+                                <label for="inputBairro"> Bairro </label>
+                                <input type="text" id="inputBairro" name="inputBairro" class="form-control"
+                                    placeholder="Insira o bairro do Endereço" formControlName="bairro" />
+                                <div *ngIf="submitted && bairro.errors" class="invalid-feedback">
+                                    <div *ngIf="bairro.errors.required"> Por favor insira o bairro do Endereço </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group" [ngClass]="{ 'has-error': submitted && cidade.errors }">
+                                <label for="inputCidade"> Cidade </label>
+                                <input type="text" id="inputCidade" name="inputCidade" class="form-control"
+                                    placeholder="Insira a cidade" formControlName="cidade" />
+                                <div *ngIf="submitted && cidade.errors" class="invalid-feedback">
+                                    <div *ngIf="cidade.errors.required"> Por favor insira a cidade </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group" [ngClass]="{ 'has-error': submitted && uf.errors }">
+                                <label for="inputUf"> UF </label>
+                                <input type="text" id="inputUf" name="inputUf" class="form-control"
+                                    placeholder="Insira a UF do Estado" formControlName="uf" />
+                                <div *ngIf="submitted && uf.errors" class="invalid-feedback">
+                                    <div *ngIf="uf.errors.required"> Por favor insira a UF do estado </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <div class="row">
+                            <div class="col-md-10 col-md-offset-1">
+                                <div class="btn-toolbar" role="toolbar">
+                                    <div class="btn-group">
+                                        <button type="submit" class="btn btn-primary">Salvar</button>
+                                    </div>
+                                    <!--
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default">Limpar</button>
+                                    </div>
+                                    -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
